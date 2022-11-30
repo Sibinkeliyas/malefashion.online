@@ -1,0 +1,151 @@
+<%- include('includes/header') %>
+
+
+      <!-- partial -->
+      <div class="main-panel" >
+        <div class="content-wrapper">
+
+         <div class="row" id="element">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Sales report</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="excels" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>USER NAME</th>
+                              <th> ORDER ID</th>
+                              <th>TOTAL AMOUNT</th>
+                              <th>ORDER DATE</th>
+                              <th>ORDER STATUS</th> 
+                              <th></th>
+                            </tr>
+                              <% for(var i = 0 ;i < sales.length ; i++){%>
+                           <tr>
+                            <td><%=i+1%></td>
+                            <td><%= sales[i].user.name%></td>
+                            <td><%=sales[i]._id%></td>
+                            <td><i class="fa-solid fa-indian-rupee-sign"></i>&nbsp<%=sales[i].totalPrice[0].total%></td>
+                            <td><%=sales[i].date%></td>
+                            <td><%=sales[i].status%></td>
+
+                        </tr>
+                        <%}%>
+                          </thead>
+                      </table>
+                      </div>
+                      <script>
+                        $(document).ready( function () {
+                          $('#excels').DataTable();
+                      } );
+                    </script>
+                    </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent width-25">
+                    <div class="card card-light-blue ">
+                      <div class="card-body">
+                        <p class="mb-4">Total revenue (Delivered)</p>
+                        <p class="fs-30 mb-2"><i class="fa-sharp fa-solid fa-indian-rupee-sign" id="revenue" style="font-size: 25px;"></i> <%=revenue%> </p>
+                        <p></p>
+                      </div>
+                    </div>
+                    
+                </div>
+                
+              </div>
+              
+
+                  </div>
+
+                  
+                </div>
+              </div>
+            </div>
+            <div  class="col-md-6 col-12 mb-4 ms-auto mb-lg-0 pull-right">
+              <button style="visibility: hidden;"></button>
+            </div>
+
+            <div  class="col-md-6 col-12 mb-4 ms-auto mb-lg-0 pull-right">
+              
+            </div>
+            <div  class="col-md-6 col-12 mb-4 ms-auto mb-lg-0 pull-right">
+              <button onclick="excel()" class="  btn btn-success" >Export to Excel</button>
+              <button onclick="download()" class="  btn " style="background-color: #98bdff;">Export to PDF</button>
+            </div>
+           
+        </div> 
+
+       
+        <script>
+    
+          function download(){
+            
+          let element = document.getElementById('element')
+          html2pdf(element,{
+              margin:10,
+              filename:'output.pdf',
+              image:{type:'jpeg',quality:0.98},
+              html2canvas:{scale:2,logging:true,dpi:192,letterRendering:true},
+              jsPDF:{unit:'mm',format:'a4',orientation:'portrait'}
+          })
+          
+          }
+
+        
+                  </script>
+
+                  <script>
+              function excel(){
+              $("#excels").table2excel({
+                filename:"salesReport.xls",
+                name:"SalesReport"
+              })
+            }
+
+                  </script>
+
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="/template/vendors/chart.js/Chart.min.js"></script>
+  <!-- <script src="/template/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="/template/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="/template/js/dataTables.select.min.js"></script> -->
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="/template/js/off-canvas.js"></script>
+  <script src="/template/js/hoverable-collapse.js"></script>
+  <script src="/template/js/template.js"></script>
+  <script src="/template/js/settings.js"></script>
+  <script src="/template/js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="/template/js/dashboard.js"></script>
+  <script src="/template/js/Chart.roundedBarCharts.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
+ 

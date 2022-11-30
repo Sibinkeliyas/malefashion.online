@@ -1,0 +1,101 @@
+<!--
+  Inspired by Vladyslav Tyzun / Awesomed
+  https://dribbble.com/shots/2738907-PayPal-Email-Receipt
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>UI 1</title>
+
+    <link rel="shortcut icon" href="paypal.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/stylesheets/pay-pal.css" charset="utf-8">
+  </head>
+  <body>
+
+    <div class="paypal">
+<form action="/online-payment-pay-pal" method="post">
+      <div class="paypal__header">
+        <div class="paypal__logo-wrapper">
+          <img src="https://i.ibb.co/DrvmW5y/paypal.png" alt="Paypal" class="paypal__logo">
+        </div>
+
+        <div class="paypal__header-info">
+          <span class="paypal__date">25.04.2016</span>
+          <span class="paypal__ref">0f-113</span>
+        </div>
+      </div>
+
+      <div class="paypal__subheader-wrapper">
+        <div class="paypal__subheader">
+          <h1 class="paypal__username">Male Fashion</h1>
+          <span class="paypal__help-text">you've purchased <%=i+1%> items in our store:</span>
+        </div>
+      </div>
+
+      <div class="paypal__cart">
+        <h2 class="paypal__cart-title">Cart:</h2>
+
+        <ul class="paypal__cart-list">
+            <ul class="paypal__cart-list">
+                <table style="width: 100%;">
+                <% for(var i = 0 ; i < cart.length; i++){%>
+              <li class="paypal__cart-item">
+                <tr><td><span class="paypal__index"><%=i+1%></span></td>
+                <td><span class="paypal__item-name" id="<%=i%>"><%=cart[i].products.productName%> </span></td>
+          
+              </li>
+              
+              <%}%>
+            </table>
+          <li class="paypal__cart-item">
+            <span class="paypal__cart-total">Total</span>
+            <span on class="paypal__item-price">$<%=totalprize%></span>
+          </li>
+          <hr>
+          <hr>
+          
+          <li class="paypal__cart-item ">
+            <%if (paypalSuccessStatus){%>
+              <script>
+                success()
+
+                function success(){
+                  Swal.fire({
+                  title: 'Are you sure?',
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    Swal.fire(
+                      'Deleted!',
+                      'Your file has been deleted.',
+                      'success'
+                    )
+                  }
+                })
+                }
+              </script>
+              <a href="/" class="btn btn-primary">Back to Home</a>
+              <%}%>
+           <button type="submit" style="float: right;" class="btn btn-primary">BUY</button>
+          </li>
+        </ul>
+      </div>
+     
+
+    </form>
+    </div>
+
+    
+
+  </body>
+</html>

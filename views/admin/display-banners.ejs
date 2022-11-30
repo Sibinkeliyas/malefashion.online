@@ -1,0 +1,97 @@
+<%- include('includes/header') %>
+
+    
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="row grid-margin">             
+                        <div class="col-12 grid-margin" style="padding-left: 0px;padding-right: 0px;">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Existing Categories</h4>
+                                <!-- <button class="btn ms-auto">add category</button> -->
+                                <div class="row">
+                                  <div class="table-sorter-wrapper col-lg-12 table-responsive">
+                                    <table id="sortable-table-2" class="table table-striped">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th class="sortStyle">Banner Name<i class="ti-angle-down"></i></th>
+                                          <th class="sortStyle">Banner images<i class="ti-angle-down"></i></th>
+                                          <!-- <th class="sortStyle">Category Name<i class="ti-angle-down"></i></th> -->
+                                        
+                                          <th class="sortStyle">Edit<i class="ti-angle-down"></i></th>
+                                          <th class="sortStyle">Delete<i class="ti-angle-down"></i></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                      <% for(var i = 0; i < data.length ; i ++) { %>
+                                            <tr>
+                                                <td><%= i + 1 %></td>
+                                                <td><%=data[i].bannerName%></td>
+                                                <td><img src="<%=data[i].images%>" style="  object-fit: cover;
+                                                    width: 70px;
+                                                    height: 70px;;" alt=" banner<%=i+1%>"></td>
+                                                
+                                                
+                                                <td>
+                                                    <a href="/admin/edit-banners?id=<%=data[i]._id%>">
+                                                        <button type="button" class="btn btn-success btn-sm">Edit
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                                
+                                                <td>
+                                                    <a>
+                                                        <input type="text" name="category_id" id="category_id" value="" hidden>
+                                                        <button class="btn btn-danger btn-sm"  ><a onclick="deleteCategory('<%=data[i]._id%>','<%=data[i].category%>')" >
+                                                            Delete
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                                <script>
+                                                  function deleteCategory(bannerID,category){
+                                                    console.log(bannerID);
+                                                    $.ajax({
+                                                      url : "/admin/delet-banners?id=" +bannerID,
+                                                      method : 'post',
+                                                      success : (response) => {
+                                                        window.location.reload()
+                                                        
+                                                      }
+                                                    })
+                                                  }
+                                                </script>
+                                            </tr>
+                                            <%}%>
+                                        
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+        <!-- container-scroller -->
+
+    </body>
+
+
+    <script>
+        $(document).ready( function () {
+          $('#sortable-table-2').DataTable();
+      } );
+          
+              </script>
+      
+      <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+      <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <%- include('includes/footer') %>

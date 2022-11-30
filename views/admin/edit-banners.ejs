@@ -1,0 +1,109 @@
+
+
+    <%- include('includes/header') %>
+
+    
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="row">
+                            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                <h3 class="font-weight-bold">Add banners
+                                </h3>
+                                <h6 class="font-weight-normal mb-4">Edit the details of product that you selected</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form class="forms-sample"  id="addProductform" style="display: contents;"
+                            action="/admin/edit-banners?id=<%=data[0]._id%>" method="post" enctype="multipart/form-data">
+                                <div class="col-md-5 grid-margin stretch-card">
+                                    <div class="card">                                   
+                                        <div class="card-body ">
+                                            <h4 class="card-title">Banner Image</h4>
+                                            <div style="height: 92%;display: flex;">
+                                                <input type="file" id="files" name="image1" class="dropify" value="" />
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                            <div id="preview" class="card-body">
+                                                <h4 class="card-title">Product Image</h4>
+                                                <div style="height: 92%;display: flex;">
+                                                    <img src="<%=data[0].images%>" style=" object-fit: cover;
+                                                width: 100%;
+                                                height: 230px;" alt="banner">
+                                                </div>
+                                            </div>
+                                        
+                                        <script>
+                                           if(document.getElementById('files').value != null){
+                                                document.getElementById(preview).style.display = "none"
+                                           }
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 grid-margin stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-title mb-2">Add banner</p>
+                                            <div class="form-group">
+                                                <label >Banner Name</label>
+                                                <input type="text" class="form-control form-control-sm" name="banners"
+                                                     id="product_name" 
+                                                    placeholder="Enter product name" maxlength="50"  value="<%=data[0].bannerName%>" >
+                                                
+                                            </div>
+                                            <div class="form-group ">
+                                                <label >Banner
+                                                    heading</label>
+                                                <input type="text" name="bannershead" class="form-control form-control-sm"
+                                                value="<%=data[0].bannerHeading%>" id="product_price"
+                                                    placeholder="Enter product price" >
+                                            </div>
+                                            <div class="form-group">
+                                              <label >Banner subheading</label>
+                                              <input type="text" class="form-control form-control-sm" name="bannerssub"
+                                                   id="product_name"
+                                                  placeholder="Enter product name" maxlength="50"  value="<%=data[0].bannerSubHeading%>" >
+                                              
+                                          </div>
+                                            <div class="form-group">
+                                                <label >Banner
+                                                    Description</label>
+                                                <input type="text" class="form-control form-control-sm"
+                                                name="bannersdes" id=""  value="" id="product_description"
+                                                    placeholder="<%=data[0].bannerDescription%>" value="<%=data[0].bannerDescription%>" rows="3" maxlength="150"
+                                                    >
+                                            </div>
+                                            
+                                           
+
+                                            
+                                            <div class="d-flex justify-content-between p-0">
+                                                <div class="col-6" style="padding-left: 0px;">
+                                                    <button type="submit" class="btn badge-success mr-2" style="width: 100%;">Add banner</button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <style>
+                                .error{
+                                    color: red;
+                                }
+                            </style>
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+        <!-- container-scroller -->
+        <%- include('includes/footer') %>
+    

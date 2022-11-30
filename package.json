@@ -1,0 +1,43 @@
+{
+  "name": "ecommerce-fashion",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "bson": "^4.7.0",
+    "cloudinary": "^1.32.0",
+    "cookie-parser": "~1.4.4",
+    "crypto": "^1.0.1",
+    "datatables": "^1.10.18",
+    "date-and-time": "^2.4.1",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "exceljs": "^4.3.0",
+    "express": "~4.16.1",
+    "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
+    "http-errors": "~1.6.3",
+    "moment": "^2.29.4",
+    "mongodb": "^4.10.0",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.20",
+    "paypal-rest-sdk": "^1.8.1",
+    "pdf-creator-node": "^2.3.5",
+    "promise": "^8.2.0",
+    "razorpay": "^2.8.3",
+    "referral-code-generator": "^1.0.8",
+    "referral-codes": "^2.0.3",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.6.2",
+    "toastify-js": "^1.12.0",
+    "twilio": "^3.82.2",
+    "uuid": "^9.0.0"
+  }
+}

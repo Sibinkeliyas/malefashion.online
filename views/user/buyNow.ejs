@@ -1,0 +1,257 @@
+<%- include('includes/header') %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- wallet  -->
+<link rel="stylesheet" href="/css/pop-up.css">
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Check Out</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Check Out</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+   
+<section class="checkout spad" id="oldAddress">
+    <div class="container">
+        <div class="checkout__form ">
+          
+            <form action="/check-out" method="post">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click
+                        here</a> to enter your code</h6> 
+                        <h6 class="checkout__title test">Billing Details</h6> <button class="btn btn-dark btn"><a style="color: aliceblue; float: right;" href="/select-address">SELECT ADDRESS</a></button>  
+                        <div class="row">
+            
+                            <style>
+                            .test{
+                            text-align : center;
+                            margin-right : 32px;
+                            }
+
+                            .btn{
+                            position: absolute;
+                            top: 12px;
+                            right: 32px;
+                            }
+                            </style>
+                            
+                                <%if(address){%>
+                                  <%}else{%>
+                                   
+                                       
+                                   
+                                    
+                                    <div class="col-lg-6">
+                                        <div class="checkout__input address" >                                  
+                                          </script>
+                                      <h5>ADDRESS</h5>    
+                                      <hr>
+                                      <div class="feature feature-one">
+                                         <p>Name : <span><%=selectedAddress.userAddress[0].firstName%>&nbsp;&nbsp&nbsp;&nbsp<%=selectedAddress.userAddress[0].lastName%></span></p> 
+                                         <p>Country : <span>  <%=selectedAddress.userAddress[0].country%></span></p>
+                                         <p>Delivery address : <span> <%=selectedAddress.userAddress[0].address%></span> </p> 
+                                         <p> <span><%=selectedAddress.userAddress[0].town%></span></p>
+                                         <p>  <span><%=selectedAddress.userAddress[0].pincode%></span> </p>
+                                         <p><span><%=selectedAddress.userAddress[0].mobile%></span> </p>
+                                         <p> <span><%=selectedAddress.userAddress[0].email%></span>   </p>
+
+                                         <input type="hidden" name="idvalue" value="<%=selectedAddress.userAddress[0]._id%>" >
+                                       
+                                      </div>
+                                       </div>
+                                      </div>        
+<script>
+    console.log("<%=selectedAddress.userAddress[0]._id%>");
+</script>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+/* CSS reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+section {
+  max-width: 25rem;
+  margin-top: 4rem;
+}
+.feature {
+  position: relative;
+  max-width: 21rem;
+  height: 17rem;
+  margin: 2rem auto;
+  padding: 2em;
+  border-radius: 0.75em;
+  box-shadow: 5px 5px 20px rgba(0 0 0/0.15);
+  text-align: left;
+  transition: transform 200ms ease-in;
+}
+
+.feature:hover {
+  transform: scale(1.03);
+}
+
+.feature-one {
+  border-top: 5px solid var(--Cyan);
+}
+
+@media (min-width: 1000px) {
+
+  section {
+    max-width: 200rem;
+  }
+
+  .section__title {
+    margin: 0 auto;
+    max-width: 40%;
+    font-size: 2rem;
+  }
+
+  .section__desc {
+    max-width: 55ch;
+    margin: 1rem auto 1rem;
+  }
+
+  .features {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .feature-one {
+    margin: auto 0;
+  }
+
+}
+</style>
+              
+                                    <%})%>
+                        <%}%>
+                               </div>
+                               </div>
+                                    <!-- ........................................................................................ -->
+                                
+                                
+                            <div class="checkout__input__checkbox">
+                                <p><button class="btn btn-dark " ><a href="/add-address">ADD NEW ADDRESS</a></button></p>
+
+                                <label for="acc">
+                                    Create an account?
+                                    <input type="checkbox" id="acc">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <p>Create an account by entering the information below. If you are a returning customer
+                                please login at the top of the page</p>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Account Password<span>*</span></p>
+                                <input type="text">
+                            </div>
+                            <div class="checkout__input__checkbox">
+                                <label for="diff-acc">
+                                    Note about your order, e.g, special noe for delivery
+                                    <input type="checkbox" id="diff-acc">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Order notes<span>*</span></p>
+                                <input type="text"
+                                placeholder="Notes about your order, e.g. special notes for delivery.">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4 class="order__title">Your order</h4>
+                                <div class="checkout__order__products">Product <span >quantity</span></div>
+                                <ul class="checkout__total__products">
+                              
+                                    <li><%=order.productName%><span id="quantity" ><%=quantity%></span></li>
+                                    <li><i class="fa-sharp fa-solid fa-indian-rupee-sign" id="price"><%=order.price%></i></li>
+                                    <input type="hidden" name="quantity" id="itemQuantity">
+                                
+                                </ul>
+                                <ul class="checkout__total__all">
+                                    
+                                        <li >Total <span><i style="color: rgb(59, 50, 50);"  class="fa-sharp fa-solid fa-indian-rupee-sign"><span id="total" style="color: #e53637;"></span></i></span> </li>
+                                       <input type="hidden" name="total" id="totalValue">
+                                    <script>
+
+                                    </script>
+                                </ul>
+                                
+                                <div class="checkout__input__checkbox">
+                                    <label for="payment">
+                                        COD
+                                        <input type="radio" value="cod" name="payment" id="payment">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="checkout__input__checkbox">
+                                    <label for="paypal">
+                                        PAYPAL
+                                        <input type="radio" value="paypal" name="payment" id="paypal">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <button type="submit" class="site-btn" >PLACE ORDER</button>
+
+                                <script>
+                                        var price = document.getElementById('price').innerHTML
+                                        var quantity = document.getElementById('quantity').innerHTML
+                                        document.getElementById('total').innerHTML = parseInt(price) * parseInt(quantity)
+                                        document.getElementById('totalValue').value =  document.getElementById('total').innerHTML
+                                        document.getElementById('itemQuantity').value = quantity
+                                        
+                                     
+                                   $('#check-out-form').submit((e)=>{
+                                    e.preventDefault()
+                                    $.ajax
+                                    ({
+                                        url : '/buyNow?id=<%=order._id%>',
+                                        method : 'post',
+                                        data : $('#check-out-form').serialize(),
+                                        success : (response)=>{
+                                          if(response.status){
+                                            Swal.fire(
+                                                    'order placed!',
+                                                    'success'
+                                                    )
+                                          }
+                                        }
+                                    })
+                                })
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+  <!-- Checkout Section End -->
+
+ <!-- Footer Section Begin -->
+    <%- include('includes/footer') %>

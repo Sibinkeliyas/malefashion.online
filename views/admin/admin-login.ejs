@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/admin_login.css">
+    <link rel="shortcut icon" href="/images/letter-m-handwritten-by-dry-brush-rough-strokes-font-vector-illustration-M24HP9.jpg" />
+      <!-- script for validation -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+  integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<!-- script for validation -->
+    <title>Admin login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Admin Login</h2>
+        </div>
+        <% if(emailStatus){%>
+            <h6>wrong email......!</h6>
+        <%}else if (passStatus){%>
+            <h6>wrong password......!</h6>
+         <%}%>
+        <form  action="/admin/admin_login" name="f1" id="login" class="form" method="post">
+                <div class="input-box">
+                <span class="label">E-mail</span>
+                <div class=" flex-r input">
+                <input type="text" name="email" id="inpe" placeholder="example@gmail.com" >
+                <i class="fas fa-at"></i>
+                </div>
+                <small id="pemail" style="color: red;"></small>
+                </div>
+  
+            <div class="input-box">
+              <span class="label">Password</span>
+              <div class=" flex-r input">
+                <input type="password" name="password" id="inpa" placeholder="********" >
+                <i class="fas fa-at"></i>
+              </div>
+              <small id="ppassword" style="color: red;"></small>
+            </div>
+           
+  
+            <input class="btn" type="submit"  value="login">
+            
+          </form>
+  
+        </div>
+      </div>
+    </div>
+   <style>
+    .error{
+        color :red;
+        font-size: 13px;
+    }
+   </style>
+</body>
+<script src="/js/validation.js"></script>
+</html>

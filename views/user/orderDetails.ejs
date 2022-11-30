@@ -1,0 +1,74 @@
+<%- include('includes/header') %>
+
+<link rel="stylesheet" href="/css/orderDetails.css">
+
+<div class="receipt">
+
+   
+
+    
+
+    <!-- Order info -->
+    <div class="order" style="margin-top: 20px;">
+
+      <p> Order No : <%=orderedProduct[0]. _id%></p>
+      <p> Date : <%=orderedProduct[0]. date%> </p>
+      <p> Shipping Address :</p>
+      <p> <%=orderedProduct[0].deliveryDetails.address%> </p>
+      <p> <%=orderedProduct[0].deliveryDetails.mobile%> </p>
+      <p> <%=orderedProduct[0].deliveryDetails.pincode%> </p>
+
+    </div>
+
+    <hr>
+
+    <!-- Details -->
+    <div class="details">
+
+      <h3> Details </h3>
+
+      <div class="product">
+
+        <img style="height: 5em;" src="data:Image/<%=orderedProduct[0]. orders.image.contentType%>;base64,<%=orderedProduct[0]. orders.image.data.toString('base64')%>" alt="">
+
+        <div class="info">
+
+          <h4> <%=orderedProduct[0]. orders.brand%>  </h4>
+
+          <!-- <p> Color: Mercine </p> -->
+          <p > Qty: <span id="quantity"><%=orderedProduct[0].products.quantity%></span> </p>
+
+        </div>
+
+      </div>
+
+      <p><i class="fa-sharp fa-solid fa-indian-rupee-sign" id="price"> <%=orderedProduct[0]. orders.price%> </i> </p>
+
+    </div>
+
+    <!-- Sub and total price -->
+    <div class="totalprice">
+
+      <!-- <p class="sub"> Subtotal <span> 128 &dollar; </span></p>
+
+      <p class="del"> Delivery <span> 10 &dollar; </span> </p> -->
+
+      <hr>
+
+      <p class="tot"> Total <span ><i class="fa-sharp fa-solid fa-indian-rupee-sign" id="total"></i>   </span> </p>
+
+    </div>
+
+    <script>
+       let price =  document.getElementById("price").innerHTML
+       let quantity = document.getElementById("quantity").innerHTML
+       document.getElementById('total').innerHTML = parseInt(quantity) * parseInt(price)
+       
+    </script>
+
+    <!-- Footer -->
+    <footer> E-MAIL : malefashion@gmail.com </footer>
+
+  </div>
+
+  <%- include('includes/footer') %>

@@ -1,0 +1,163 @@
+
+
+    <%- include('includes/header') %>
+    <!--main site-->
+    
+    <!--main site-->
+    
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="row">
+                            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                                <h3 class="font-weight-bold">Add banners
+                                </h3>
+                                <h6 class="font-weight-normal mb-4">Edit the details of product that you selected</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <form class="forms-sample" id="addProductform" style="display: contents;"
+                            action="/admin/add-banners" method="post" enctype="multipart/form-data">
+                                <div class="col-md-5 grid-margin stretch-card">
+                                    <div class="card">                                   
+                                        <div class="card-body">
+                                            <h4 class="card-title">Banner Image</h4>
+                                            <div style="height: 92%;display: flex;">
+                                                <input type="file" name="image1" id="files" class="dropify" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title"></h4>
+                                            <div class="preview" style="height: 92%;display: flex;">
+                                               
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                                <div class="col-md-7 grid-margin stretch-card">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-title mb-2">Add banner</p>
+                                            <div class="form-group">
+                                                <label >Banner Name</label>
+                                                <input type="text" class="form-control form-control-sm" name="banners"
+                                                     id="product_name"
+                                                    placeholder="Enter banners name" maxlength="50"  value="" >
+                                                
+                                            </div>
+                                            <div class="form-group ">
+                                                <label >Banner
+                                                    heading</label>
+                                                <input type="text" name="bannershead" class="form-control form-control-sm"
+                                                value="" id="product_price"
+                                                    placeholder="Enter banner heading" >
+                                            </div>
+                                         
+                                          <div class="form-group">
+                                            <label >Banner
+                                                Description</label>
+                                            <input type="text" class="form-control form-control-sm"
+                                            name="bannerssub" id=""  value="" id="product_description"
+                                                placeholder="Enter banner description" rows="3" maxlength="150"
+                                                >
+                                        </div>
+                                            <div class="form-group">
+                                                <label >Banner
+                                                    sub heading</label>
+                                                <input type="text" class="form-control form-control-sm"
+                                                name="bannersdes" id=""  value="" id="product_description"
+                                                    placeholder="Enter banner description" rows="3" maxlength="150"
+                                                    >
+                                            </div>
+                                            
+                                           
+
+                                            
+                                            <div class="d-flex justify-content-between p-0">
+                                                <div class="col-6" style="padding-left: 0px;">
+                                                    <button type="submit" class="btn badge-success mr-2" style="width: 100%;">Add banner</button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+<style>
+  .error{
+    color: red;
+    font-size: 13px;
+  }
+</style>
+                            <!-- to show selected image -->
+                            <script>
+                                $(document).ready(function() {
+                              if (window.File && window.FileList && window.FileReader) {
+                                $("#files").on("change", function(e) {
+                                  var files = e.target.files,
+                                    filesLength = files.length;
+                                  for (var i = 0; i < filesLength; i++) {
+                                    var f = files[i]
+                                    var fileReader = new FileReader();
+                                    fileReader.onload = (function(e) {
+                                      var file = e.target;
+                                      $("<div class=\"preview\">" +
+                                        "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                                        "<br/><span class=\"remove\">Remove image</span>" +
+                                        "</div>").insertAfter("#files");
+                                      $(".remove").click(function(){
+                                        $(this).parent(".preview").remove();
+                                      });
+                                      
+                                     
+                                      
+                                    });
+                                    fileReader.readAsDataURL(f);
+                                  }
+                                  console.log(files);
+                                });
+                              } else {
+                                alert("Your browser doesn't support to File API")
+                              }
+                            });
+                            </script>
+                           <style>
+                      
+                        .imageThumb {
+                          max-height: 75px;
+                          border: 2px solid;
+                          padding: 1px;
+                          cursor: pointer;
+                          margin-top: 10px;
+                        }
+
+                        /* @media only screen and (max-width: 600px) {
+                            .imageThumb {
+                                background-color: rgb(0, 0, 0);
+                            } */
+                            /* } */
+                        .remove {
+                          display: block;
+                          background: #444;
+                          border: 1px solid black;
+                          color: white;
+                          text-align: center;
+                          cursor: pointer;
+                        }
+                        .remove:hover {
+                          background: white;
+                          color: black;
+                        }
+                        </style>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+        <!-- container-scroller -->
+        <%- include('includes/footer') %>
+    

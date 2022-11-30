@@ -1,0 +1,247 @@
+
+
+<%- include('includes/header') %>
+
+
+    <!--............................ style..................... -->
+
+    <link rel="stylesheet" href="/css/view-more.css">
+
+
+    <!-- ........................................................ admin-view-more .............................................................................................. -->
+
+<!-----------------------------------------------body--------------------------------------------------->
+
+<div class="row" style="display: flex; justify-content: center;align-items: center; width: 100%;">
+<%for (var i = 0;i < orders.length ; i++){%>
+  <div class="container">
+    <div class="heading">
+      <div class="odetails-1">
+        <p><b>Order</b></p>
+        <p><%=orders[i]._id%></p>
+      </div>
+      <div class="odetails-2">
+        <p></p>
+      </div>
+  
+      <button><i class="fa-solid fa-location-crosshairs"></i>
+        <p><select onclick="selectStatus('<%=orders[i]._id%>')" name="track order"  id='<%=orders[i]._id%>' style="width: 10em;background-color: #644dbd;color: white;border: 0;">TRACK ORDER
+        <option value=""><-----select------></option>
+        <option value="CANCEL"> CANCEL</option>
+        <option value="PLACED"> PLACED</option>
+        <option value="SHIPPED"> SHIPPED</option>
+        <option value="DELIVERED"> DELIVERED</option>
+        
+      </select></p></button>
+    </div>
+  
+    <hr>
+  
+    <script>
+       
+      function selectStatus(orderID){
+        console.log(document.getElementById(orderID).value );
+         if(document.getElementById(orderID).value == "CANCEL"){
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  $.ajax({
+                   url : '/admin/cancel_order?id='+orderID,
+                   method : 'post'
+                  
+              })
+                  Swal.fire(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                  )
+                  setTimeout(() => {
+                      window.location.reload()
+                  }, 2000);
+              }
+              })
+         } else  if(document.getElementById(orderID).value == "PLACED"){
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "Do you want accept the order!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: 'btn btn-success',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, accept it!'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  $.ajax({
+                   url : '/admin/accept_order?id='+orderID,
+                   method : 'post'
+                  
+              })
+                  Swal.fire(
+                  'Accepted!',
+                  'The order accepted succesfully.',
+                  'success'
+                  )
+                  
+                  setTimeout(() => {
+                      window.location.reload()
+                  }, 2000);
+              }
+              })
+         }
+         
+         else  if(document.getElementById(orderID).value == "SHIPPED"){
+          Swal.fire({
+              title: 'Are you sure?',
+              text: "Do you want ship the order!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: 'btn btn-success',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, accept it!'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  $.ajax({
+                   url : '/admin/shipping_order?id='+orderID,
+                   method : 'post'
+                  
+              })
+                  Swal.fire(
+                  'Accepted!',
+                  'The order shipped succesfully.',
+                  'success'
+                  )
+                  
+                  setTimeout(() => {
+                      window.location.reload()
+                  }, 2000);
+              }
+              })
+            }
+           
+              
+             
+            else  if(document.getElementById(orderID).value == "DELIVERED"){
+              Swal.fire({
+              title: 'Are you sure?',
+              text: "Do you want deliver the order!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: 'btn btn-success',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, accept it!'
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  $.ajax({
+                   url : '/admin/delivery_order?id='+orderID,
+                   method : 'post'     
+              })
+                  Swal.fire(
+                  'Accepted!',
+                  'The order delivered succesfully.',
+                  'success'
+                  )     
+                  setTimeout(() => {
+                      window.location.reload()
+                  }, 2000);
+              }
+              })
+            }
+            }
+            
+  </script>
+    <% orders[i].products.forEach(function(user){%>
+  
+    <div class="card-container">
+      <div class="card">
+        <div class="img">
+            <img src="<%=user.products.images[0]%>" alt="<%=user.products.productName%>">
+        </div>
+        <div class="parent">
+          <div class="content">
+            <div class="details-1">
+              <h1><%=user.products.productName%></h1>
+              <p>By <%=user.products.brand%></p>
+            </div>
+            <div class="details-2">
+              <p>Size:<span>9</span> </p>
+              <p>Qty:<span id="<%=user.products._id%><%=i%>"><%=user.products.itemquantity%></span> </p>
+              <p>price:<span id="<%=user.products._id%><%=i+1%>"><%=user.products.price%></span> </p>
+              
+              <hr>
+              <p style="margin-left: 7em;">price: <span> <i class="fa-solid fa-indian-rupee-sign" id="<%=user.products._id%><%=i+1%><%=i+2%>"></i></span></p>
+              
+              <p><b></b></p>
+
+              <!----------------------------- total price by product ----------------------------->
+
+                    <script>
+                        document.getElementById('<%=user.products._id%><%=i+1%><%=i+2%>').innerHTML = parseInt(document.getElementById('<%=user.products._id%><%=i+1%>').innerHTML) * parseInt(document.getElementById('<%=user.products._id%><%=i%>').innerHTML)
+                    </script>
+
+              <!----------------------------- total price by product ----------------------------->
+            </div>
+          </div>
+          <div class="status">
+            <div class="sec1">
+              <p>Status</p>
+              <h2 id="<%=user.products.price%><%=i-1%>" ><%=orders[i].status%></h2>
+            </div>
+            <div class="sec2">
+              <p>ordered date</p>
+              <h3 ><%=orders[i].date%></h3>
+            </div>
+          
+          </div>
+          <div class="status">
+            <div class="sec1">
+              <p>Payment Method</p>
+              <h2><%=orders[i].paymentmethod%></h2>
+            </div>
+            <div class="sec2">
+              <p>delivery Address</p>
+              <h3><%=orders[i].
+                deliveryDetails.name%></h3>
+                <p><%=orders[i].
+                  deliveryDetails.mobile%></p>
+                  <p><%=orders[i].
+                    deliveryDetails.address%></p>
+                    <p><%=orders[i].
+                      deliveryDetails.pincode%></p>
+              </div>          
+          </div>
+
+          </div>
+          
+      </div>
+      <hr>
+    </div>
+
+     <!------------------------------------------script-------------------------------------------->
+    <script>
+
+
+      if('<%=orders[i].status%>' === 'cancel'||'<%=orders[i].status%>' === 'failed'){
+          document.getElementById('<%=user.products.price%><%=i-1%>').style.color = "red"
+          }else{
+            document.getElementById('<%=user.products.price%><%=i-1%>').style.color = "green"
+          }
+    </script>
+
+     <!------------------------------------------script-------------------------------------------->
+
+    <%})%>
+  
+    
+  </div>
+
+
+<%}%>
+</div>
+  <%- include('includes/footer') %> 

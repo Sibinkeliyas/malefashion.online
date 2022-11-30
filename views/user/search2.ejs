@@ -1,0 +1,352 @@
+<%- include('includes/header') %>
+    <!-- Header Section End -->
+   
+      <!-- wallet  -->
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shop</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <span>Shop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="shop__sidebar">
+                        <div class="shop__sidebar__search">
+                            <form action="#">
+                                <input type="text" placeholder="Search...">
+                                <button type="submit"><span class="icon_search"></span></button>
+                            </form>
+                        </div>
+                        <div class="shop__sidebar__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                    </div>
+                                     <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__categories">
+                                            <ul class="nice-scroll">
+                                                <% for(var i=0; i < cartDetails.length;i++) {%>
+                                                <li><a href="/category-filter?id=<%=cartDetails[i]._id%>"><%=cartDetails[i].category%></a></li>
+                                                <%}%>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    </div>
+                                 
+                                </div>
+                                <!-- <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                                <ul>
+                                                    <% for (var i =0 ;i< data.length ; i++) {%>
+                                                    <li><a href="#">Louis Vuitton</a></li>                                    
+                                                    <%}%>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <ul>
+                                                    <li class="filter"><a  onclick="filter(0,2000)">0.00 - 500.00</a></li>
+                                                    <li><a href="#">500.00 - 1000.00</a></li>
+                                                    <li><a href="#">1000.00 - 1500.00</a></li>
+                                                    <li><a href="#">1500.00 - 2000.00</a></li>
+                                                    <li><a href="#">2000.00 - 2500.00</a></li>
+                                                    <li><a href="#">2500.00+</a></li>
+                                                </ul>
+                                                <style>
+                                                    .filter {
+                                                        cursor: pointer;
+                                                    }
+                                                </style>
+                                                <script>
+                                                    function filter(min,max){
+                                                        $.ajax({
+                                                            url : '/price-filter',
+                                                            method : 'post',
+                                                            data : {
+                                                                min : min,
+                                                                max : max
+                                                            },
+                                                            success : (response) => {
+                                                                if(response.status){
+                                                                    window.location.href = "http://localhost:3000/shop"
+                                                                }
+                                                            }
+                                                        })
+                                                    }
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseFour">Size</a>
+                                    </div>
+                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__size">
+                                                
+                                                <label for="sm">s
+                                                    <input type="radio" id="sm">
+                                                </label>
+                                                <label for="md">m
+                                                    <input type="radio" id="md">
+                                                </label>
+                                                <label for="4xl">l
+                                                    <input type="radio" id="4xl">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
+                                    </div>
+                                    <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__tags">
+                                                <a href="#">Product</a>
+                                                <a href="#">Bags</a>
+                                                <a href="#">Shoes</a>
+                                                <a href="#">Fashio</a>
+                                                <a href="#">Clothing</a>
+                                                <a href="#">Hats</a>
+                                                <a href="#">Accessories</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="shop__product__option">
+                        <form action="/search-display" method="get">
+                            <input type="text" name="search">
+                            <input type="submit">
+                        </form>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__left">
+                                    <p>products you are going to to love</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__right">
+                                    <p>Sort by Price:</p>
+                                    <select>
+                                        <option value="">Low To High</option>
+                                        <option value="">$0 - $55</option>
+                                        <option value="">$55 - $100</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <% for (var i =0 ;i< data.length ; i++) {%>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <a href="/view-item?id=<%= data[i]._id%>"><div class="product__item__pic set-bg" data-setbg="<%=data[i].image1%>" alt="">
+                                  
+                                    <span class="label">New</span>
+                                    <%if(profileStatus){%>
+                                        <%if(wish_list[0]._id == null ){%>                                    
+                                        <%}else{%>                                       
+                                     <% let inWishlist = false; for(var j =  0 ; j < wish_list.length ; j++){%>                                                                                                                                                                                 
+                                            <%if(  data[i]._id.toString() == wish_list[j].products.item.toString()){ inWishlist = true; } }%>
+                                            <% if(inWishlist) { %>
+                                                <div style="position: relative;"  onclick="deleteWishlist(event,'<%= data[i]._id%>','<%= data[i]._id%><%=i+1%>')" >
+                                                    <ul class="product__hover">
+                                                        <li><i class="fa-solid fa-heart heart1" id='<%= data[i]._id%><%=i+1%>'></i></li>
+                                                    </ul>
+                                                </div>
+                                            <%}else{%>
+                                                <div style="position: relative;"  onclick="wishList(event,'<%= data[i]._id%>')" >
+                                                    <ul class="product__hover">
+                                                        <li><i class="fa-solid fa-heart normalHeart"  id='<%= data[i]._id%>'></i></li>
+                                                    </ul>
+                                                </div>
+                                            <%}%>
+                                        
+                                <%}%>
+                            <%}%>     
+                                </div></a>
+                                <div class="product__item__text">
+                                    <h6><%=data[i].productName%></h6>
+                                    <% if(profileStatus){ %>
+
+                                        <%if(data[i].quantity < 3){%>
+                                    
+                                            <%if(data[i].quantity < 1){%>
+                                                
+                                            <%}else{%>
+                                                <p>Only <%=data[i].quantity%>  are left, <span style="color: #ff9f00;">Hurry up</span></p>
+                                            <%}%>
+                                       
+                                        <%}%>
+                                        <%if(data[i].quantity < 1){%>
+                                            <a><button style="border: none;background: none;padding: 0;" class="add-cart" ><a>stock out</a></button></a>
+                                            <%}else{%>
+                                        <a><button style="border: none;background: none;padding: 0;" class="add-cart" onclick=" cartButton('<%= data[i]._id%>'),count('<%= data[i]._id%>')"><a>+ Add To Cart</a></button></a>
+                                        <%}%>
+                                            <% } else { %>
+                                        <a href="/login" class="cart">+ Add To Cart</a>
+                                        <%}%>
+                                    <script>
+                                        function cartButton(productID){
+                                            console.log("HIHIHI");
+                                            $.ajax({
+                                                url:'/add-to-cart?id='+productID,
+                                                method:'get',
+                                                success : (response)=>{
+                                                if(response.status){
+                                                    Swal.fire({
+                                                    type: 'success',
+                                                    title: 'Added to cart',
+                                                    showConfirmButton: false,
+                                                    timer: 2000    
+                                                    })
+                                                    document.getElementById('count').innerHTML =  parseInt(document.getElementById('count').innerHTML ) + 1 
+                                                }
+                                            }
+                                            })
+                                        }
+
+                                        function wishList(event, productID) {           
+            event.preventDefault();
+            event.stopPropagation()
+            console.log(productID);
+            document.getElementById(productID).style.color = "red"
+            $.ajax({
+                url: '/wish-list?id=' + productID,
+                method: 'post',
+                success: (response) => {
+                    if (response.status) {
+                    }
+                }
+
+            })
+
+        }
+
+        function deleteWishlist(event,productID,id){
+            event.preventDefault();
+            event.stopPropagation()
+            console.log(productID);
+            document.getElementById(id).style.color = "black"
+            $.ajax({
+                url: '/delete-wishlist?id=' + productID,
+                method: 'post',
+                success: (response) => {
+                    if (response.status) {
+                    }
+                }
+
+            })
+        }
+                                    </script>
+                                    <div class="rating">
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                    </div>
+                                    <%if(parseInt(data[i].offerPrice) == parseInt(data[i].price) && data[i].categoryOffer == 0 || parseInt(data[i].offerPrice) == parseInt(data[i].price) && data[i].categoryOffer == undefined){%>                              
+                                        <span class="offer-price">RS : <%=data[i].price%></span>                                   
+                                    <%}else{%>     
+                                        <%if( data[i].categoryOffer == 0 ||data[i].categoryOffer == null ){%>   
+                                            <span class="offer-price">RS : <%=data[i].offerPrice%></span> <span class="og-price">RS : <%=data[i].price%></span><span ></span>
+                                            <%}else{%>                             
+                                        <%if(data[i].offerPrice > data[i].categoryOffer){%>                          
+                                            <span class="offer-price">RS : <%=data[i].categoryOffer%></span> <span class="og-price">RS : <%=data[i].price%></span><span ></span>                                       
+                                            <%}else{%>          
+                                                <span class="offer-price">RS : <%=data[i].offerPrice%></span> <span class="og-price">RS : <%=data[i].price%></span><span ></span>
+                                                <%}%>
+                                        <%}%>
+                                        <%}%>
+                                        <style>
+                                                        
+                                            .pricing{
+                                            font-size:18px;
+                                            }
+                
+                                            .offer-price{
+                                            font-weight:bold;
+                                            }
+                                            .og-price{
+                                            font-size:.7em;
+                                            color: #e21941;
+                                            text-decoration: line-through;
+                                            }
+                
+                                           </style>
+                                    <div class="product__color__select">
+                                        <label for="pc-4">
+                                            <input type="radio" id="pc-4">
+                                        </label>
+                                        <label class="active black" for="pc-5">
+                                            <input type="radio" id="pc-5">
+                                        </label>
+                                        <label class="grey" for="pc-6">
+                                            <input type="radio" id="pc-6">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>      
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product__pagination">
+                                <a class="active" href="#">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <span>...</span>
+                                <a href="#">21</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+
+    <!-- Footer Section Begin -->
+    <%- include('includes/footer') %>

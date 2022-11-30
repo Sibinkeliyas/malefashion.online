@@ -1,0 +1,96 @@
+
+        <%- include('includes/header') %>
+
+      </script>
+            <!-- partial -->
+            <div class="main-panel" >
+              <div class="content-wrapper">
+      
+               <div class="row" id="element">
+                  <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">All orders</p>
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="table-responsive">
+                              <table id="excels" class="display expandable-table" style="width:100%">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>USER NAME</th>
+                                    <th> ORDER ID</th>
+                                    <th>PAYMENT METHOD</th>
+                                    <th>ORDER DATE</th>
+                                    <th>ORDER STATUS</th>
+                                    <th></th>
+        <% for(var i = 0 ;i< all_orders.length; i++) {%>             
+        <tr>
+            <td><%=i+1%></td>
+            <td><%=all_orders[i].user.name%></td>
+            <td><%=all_orders[i]._id%></td>
+            <td><%=all_orders[i].paymentmethod%></td>
+            <td><%=all_orders[i].date%></td>
+            <td><%=all_orders[i].status%></td>
+            <td><a href="/admin/view-more?id=<%=all_orders[i]._id%>"><i class="fa-solid fa-eye" ></i></a></td>
+            
+        </tr>
+        <%}%>
+   
+      </thead>
+    </table>
+    <script>
+      $(document).ready( function () {
+        $('#excels').DataTable();
+    } );
+  </script>
+    </div>
+  </div>
+</div>
+<div class="row">
+<div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent width-25">
+  
+  
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+</div>
+</div>
+<div  class="col-md-6 col-12 mb-4 ms-auto mb-lg-0 pull-right">
+<button style="visibility: hidden;"></button>
+</div>
+
+
+</div> 
+
+
+
+
+<!-- content-wrapper ends -->
+<!-- partial:partials/_footer.html -->
+<footer class="footer">
+<div class="d-sm-flex justify-content-center justify-content-sm-between">
+<span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+</div>
+</footer>
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+
+<!-- endinject -->
+<%- include('includes/footer') %>
+
+
+

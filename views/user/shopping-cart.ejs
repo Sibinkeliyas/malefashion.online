@@ -1,0 +1,415 @@
+<%- include('includes/header') %>
+    <!-- Header Section End -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <!-- wallet  -->
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shopping Cart</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/">Home</a>
+                            <a href="/shop">Shop</a>
+                            <span>Shopping Cart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shopping Cart Section Begin -->
+    <% if(cartData) {%> 
+        <% let status = false %>
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for ( var i = 0;i < data.length ; i++) {%>
+                                    <script>
+                                        console.log("<%=status%>");
+                                    </script>
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img style="height: 5em; width: 4em;" src="<%=data[i].products.image1%>" alt="">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6 ><%= data[i].products.productName%></h6>
+                                             
+                                                <h5 ></h5>
+                                               
+                                            <%if(data[i].products.offerPrice == data[i].products.price &&  data[i].products.categoryOffer == 0 || data[i].products.offerPrice == data[i].products.price  && data[i].products.categoryOffer == undefined){%>
+                                  
+                                                RS : <span class="offer-price" id="<%= data[i].products._id%><%=i+102%>"> <%=data[i].products.price%></span>
+                                               
+                                            <%}else{%>
+
+                                                <%if(data[i].products.categoryOffer == 0 || data[i].products.categoryOffer == null){%>
+                                                    RS :   <span class="offer-price" id="<%= data[i].products._id%><%=i+102%>"> <%=data[i].products.offerPrice%></span> <span class="og-price">RS : <%=data[i].products.price%></span><span ></span>
+                                                    <%}else{%>
+                                               
+                                                <%if(data[i].products.offerPrice > data[i].products.categoryOffer){%>
+                                                
+                                                    RS :  <span class="offer-price" id="<%= data[i].products._id%><%=i+102%>"> <%=data[i].products.categoryOffer%></span> <span class="og-price">RS : <%=data[i].products.price%></span><span ></span>
+                                                    
+                                                    <%}else{%>
+                                                       
+                                                        RS :   <span class="offer-price" id="<%= data[i].products._id%><%=i+102%>"> <%=data[i].products.offerPrice%></span> <span class="og-price">RS : <%=data[i].products.price%></span><span ></span>
+                                                        <%}%>
+                                               
+                                                <%}%>
+                                                <%}%>
+                                             
+                                               
+                                         
+                                        </div>
+                                    </td>
+                                         <td class="quantity__item">
+                                            <div class="quantity-field" >
+                                                <button 
+                                                  class="value-button decrease-button" 
+                                                  onclick="decreaseValue(this,`<%= data[i].products._id%>`,`<%= data[i].products._id%><%=i+102%>`,'<%= data[i].products._id%><%=i+100202%>')" 
+                                                  title="decrease">-</button>
+                                                  <div class="number" id="<%= data[i].products._id%>"><%= data[i].quantity%></div>
+                                                <button 
+                                                  class="value-button increase-button" 
+                                                  onclick="increaseValue(this, '<%= data[i].products.quantity%>',`<%= data[i].products._id%>`,`<%= data[i].products._id%><%=i+102%>`,'<%= data[i].products._id%><%=i+100202%>')"
+                                                  title="increase"
+                                                >+
+                                                </button>
+                                              </div>                                         
+                                        </div>
+                                    </td>
+                                    <td class="cart__price" ><i style="font-size: 15px;" id="<%= data[i].products._id%><%=i+100202%>" class="fa-solid fa-indian-rupee-sign"></i></td>
+                                    <td class="cart__close" ><i class="fa fa-close" onclick="deleteCart(`<%= data[i].products._id%>`)"></i></td>     
+                                    <script>
+                                        document.getElementById('<%= data[i].products._id%><%=i+100202%>').innerHTML = parseInt(document.getElementById("<%= data[i].products._id%>").innerHTML) * parseInt(document.getElementById("<%= data[i].products._id%><%=i+102%>").innerHTML)
+                                    </script>                                                                 
+                                </tr>
+                                <%if(data[i].quantity > data[i].products.quantity){ status = true }else{  } %>
+
+                              <% } %>
+                                
+                             
+                            </tbody>
+                        </table>
+                    </div>
+                    <div  class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="/shop">Continue Shopping</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4" id="">
+                    <div class="cart__discount">
+                        <h6>Discount codes</h6>
+                        <form action id="coupen-form">
+                            <input type="text" name="coupen" placeholder="Coupon code" id="coupenName">
+                            <button onclick="updateDiv()" type="submit" id="coupenApply" >Apply</button>
+                        </form>
+
+                      
+
+
+
+                    </div>
+                    <div id="coupen">
+                    <div class="cart__total" >
+                        <h6>Cart total</h6>
+                        <ul>
+                            <% if(totalPriceStatus) {%>
+                           
+                            <li><i class="fa-sharp fa-solid fa-indian-rupee-sign me-auto" ></i><span class="offer-price"id="coupenTotal"><%=totalPrice%> </span> <span id="totalprice" class="og-price"> </span><span ></span></li>
+                            <%}else{%>
+                                <li>Total <i class="fa-sharp fa-solid fa-indian-rupee-sign " ></i><span id="totalprice">0</span></li>
+                            <%}%>
+                        </ul>
+                        <%if (status){%>
+                        <a onclick="quantity()" style="color: white;" class="primary-btn">Proceed to checkout</a>
+                            <%}else{%>
+                        <a href="/place-order" class="primary-btn">Proceed to checkout</a>
+                        <%}%>
+                            
+                                                   <!-- <style>
+                                                        
+                                                  
+                        
+                                                    .offer-price{
+                                                    font-weight:bold;
+                                                    }
+                                                    .og-price{
+                                                    font-size:.7em;
+                                                    color: #e21941;
+                                                    text-decoration: line-through;
+                                                    }
+                        
+                                                   </style> -->
+                    </div>
+                </div> 
+            </div>
+            </div>
+        </div>
+    </section>
+    <%} else {%>
+        <section class="shopping-cart spad">
+            <div class="container">
+                <img style="height: 50%;width: 40%; align-items: center;" src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-4816550-4004141.png" alt="tullrt">
+                
+            </div>
+           
+        </section>
+    <%}%>
+ 
+<style>
+    .quantity-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px; 
+  height: 40px;
+  margin: 0 auto;    
+}
+
+.quantity-field .value-button{ 
+  border: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 100%;   
+  padding: 0;
+  background: #eee; 
+  outline: none;
+  cursor: pointer;
+}
+
+.quantity-field .value-button:hover {
+  background: rgb(230, 230, 230);
+}
+
+.quantity-field .value-button:active{
+  background: rgb(210, 210, 210);
+}
+
+.quantity-field .decrease-button {
+  margin-right: -4px;
+  border-radius: 8px 0 0 8px;
+}
+
+.quantity-field .increase-button {
+  margin-left: -4px;
+  border-radius: 0 8px 8px 0;
+}
+ 
+.quantity-field .number{
+  display: inline-block;
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 100%;
+  line-height: 40px;
+  font-size: 11pt;
+  box-sizing: border-box; 
+  background: white;
+  font-family: calibri;
+}
+
+.quantity-field .number::selection{
+  background: none;
+}
+
+/*
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+*/
+</style>
+
+<style>
+                                                        
+    .pricing{
+    font-size:18px;
+    }
+
+    .offer-price{
+    font-weight:bold;
+    }
+    .og-price{
+    font-size:.7em;
+    color: #e21941;
+    text-decoration: line-through;
+    }
+
+   </style>
+<!-- script -->
+
+
+<script>                                                                                
+    function increaseValue(button,limit,productID,id,price) {
+    const numberInput = button.parentElement.querySelector('.number');
+    var value = parseInt(numberInput.innerHTML, 10);
+    if(isNaN(value)) value = 0;
+    if(limit && value >= limit) return;
+    numberInput.innerHTML = value+1;
+    totalChange(id)
+    document.getElementById(price).innerHTML = parseInt(document.getElementById(price).innerHTML) + parseInt(document.getElementById(id).innerHTML)
+    $.ajax({   
+   url:'/cart-increase?id='+productID +'&quantity=' +  numberInput.innerHTML,
+   method:'get',
+   
+   success : (Response=>{
+   
+   })
+   
+})
+
+    }
+    function decreaseValue(button,productID ,id) {
+    const numberInput = button.parentElement.querySelector('.number');
+    var value = parseInt(numberInput.innerHTML, 10);
+    if(isNaN(value)) value = 0;  
+    if(value < 2) return;
+    numberInput.innerHTML = value-1;
+    totalChangeMinus(id)
+    let qvalue = numberInput.innerHTML
+    $.ajax({
+    url:'/cart-decrease?id='+productID +'&quantity=' + numberInput.innerHTML,
+    method:'get',
+})
+    }
+
+   
+</script>
+<script>
+                               
+    function totalChange(total){
+        document.getElementById('coupenTotal').innerHTML = parseInt(document.getElementById('coupenTotal').innerHTML) + parseInt(document.getElementById(total).innerHTML)
+    }
+    function totalChangeMinus(total){
+        document.getElementById('coupenTotal').innerHTML = parseInt(document.getElementById('coupenTotal').innerHTML) - parseInt(document.getElementById(total).innerHTML)
+    }
+</script>
+
+<!-- coupen -->
+
+<script>
+    // quantity less
+
+    function quantity(){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'products is not there',
+           
+            })
+           
+    }
+    
+    // product purchase
+    $('#coupen-form').submit((e)=>{
+    e.preventDefault()
+    $.ajax({
+        url : '/cart',
+        method : 'post',
+        data : $('#coupen-form').serialize(),
+        success : (response) => {  
+            if(response.status === false){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'invalid coupen!',
+           
+            })
+            }else if(response.status === true){
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'this coupen is expired......!',
+            })
+            }else if(response.coupenstatus){
+                console.log("something");
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'this coupen is not applicable for this......!',
+            })
+            } 
+            else if(response.coupencoupenexpire){coupenmaximastatus
+            
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'this coupen is expired......!',
+            })
+            } 
+            else if(response.coupenmaximastatus){
+            
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'this coupen  cannot apply......!',
+            })
+            }
+        }
+   })
+}) 
+
+        function updateDiv()
+                { 
+                    $( "#coupen" ).load(window.location.href + " #coupen" );
+         
+                }
+        </script>
+        <script>
+            function deleteCart(productID){
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+           
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({   
+                url:'/cart-delete?id='+productID,                                           
+                method:'get',
+                
+            })
+            Swal.fire(
+            'removed from cart!',
+            'Your item has been removed.',
+            'success',
+            )
+            setTimeout(() => {
+               window.location.reload()
+            }, 1000);
+        }
+        })
+            }
+        </script>
+    <%- include('includes/footer') %>

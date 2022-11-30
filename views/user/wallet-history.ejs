@@ -1,0 +1,47 @@
+
+    <%- include('includes/header') %>
+	<link rel="stylesheet" href="/css/wallet-history.css">
+	<!-- Josh Channin -->
+<body>
+    <div class="Container">
+      <div class="wallet">
+        <aside class="left-wallet">
+          <div class="wallet-head">
+            <h1> My Wallets </h1>
+            <div class="modal-open">+
+            </div>
+          </div>
+          <div class="cc-select">          
+          </div>
+        </aside>
+        <content class="right-trans">
+          <h1> Current Balance </h1>
+          <h4 id="balance">100</h4>
+          <div class="trans-list">          
+          </div>
+        </content>
+      </div>
+    </div>
+  
+    <div class="modal">
+      <div class="modal-body">
+        <h3>Add a New Card</h3>
+        <h5>Select a card on the left and enter the information</h5>
+        <div class="modal-close">x</div>      
+        <div class="modal-cards">
+          <div class="md-cc visa">
+            <div class="cc-img visa"></div>
+          </div>      
+         <div class="md-cc amex">
+            <div class="cc-img amex"></div>
+          </div>      
+         <div class="md-cc mc">
+            <div class="cc-img mc"></div>
+          </div>    
+        </div>      
+         
+        <button class="modal-add-cc"> Add </button>      
+    </div>
+  </body>
+
+<%- include('includes/footer') %>

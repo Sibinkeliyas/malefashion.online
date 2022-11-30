@@ -1,0 +1,104 @@
+<%- include('includes/header') %>
+
+    
+                <!-- partial -->
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="row grid-margin">             
+                        <div class="col-12 grid-margin" style="padding-left: 0px;padding-right: 0px;">
+                            <div class="card">
+                              <div class="card-body">
+                                <h4 class="card-title">Existing Categories</h4>
+                                <!-- <button class="btn ms-auto">add category</button> -->
+                                <div class="row">   
+                                  <div class="table-sorter-wrapper col-lg-12 table-responsive">
+                                    <table id="sortable-table-2" class="table table-striped">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th class="sortStyle">Category Name<i class="ti-angle-down"></i></th>
+                                        
+                                          <th class="sortStyle">Edit<i class="ti-angle-down"></i></th>
+                                          <th class="sortStyle">Delete<i class="ti-angle-down"></i></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                      <% for(var i = 0; i < data.length ; i ++) { %>
+                                            <tr>
+                                                <td><%= i + 1 %></td>
+                                                <td><%=data[i].category%></td>
+                                                
+                                                
+                                                <td>
+                                                    <a href="/Admin/edit-category?id=<%=data[i]._id%>">
+                                                        <button type="button" class="btn btn-success btn-sm">Edit
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                                
+                                                <td>
+                                                    <a>
+                                                        <input type="text" name="category_id" id="category_id" value="" hidden>
+                                                        <button class="btn btn-danger btn-sm"  ><a onclick="deleteCategory('<%=data[i]._id%>','<%=data[i].category%>')" >
+                                                            Delete
+                                                        </button>
+                                                    </a>
+                                                </td>
+                                                <script>
+                                                  function deleteCategory(categoryID,category){
+                                                    console.log(categoryID);
+                                                    console.log(category);
+                                                    $.ajax({
+                                                      url : "/admin/delete-category?id=" +categoryID+"&item="+category,
+                                                      method : 'get',
+                                                      success : (response) => {
+                                                        if(response.status){
+                                                          Swal.fire({
+                                                          icon: 'error',
+                                                          title: 'Oops...',
+                                                          text: 'The category hava some products,You hava to delete them first',
+                                                         
+                                                        })
+                                                        }
+                                                      }
+                                                    })
+                                                  }
+                                                </script>
+                                            </tr>
+                                            <%}%>
+                                        
+                                      </tbody>
+                                    </table>
+                                    <script>
+                                      $(document).ready( function () {
+                                  $('#sortable-table-2').DataTable();
+                              } );
+                              
+                                  </script>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+        <!-- container-scroller -->
+
+    </body>
+
+
+    <script>
+        $(document).ready( function () {
+          $('#sortable-table-2').DataTable();
+      } );
+          
+              </script>
+      
+
+
+    <%- include('includes/footer') %>

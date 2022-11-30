@@ -1,4 +1,4 @@
-const cartCount = require('../USER-CONTROLLER/user-check-out')
+const cartCount = require('../user-controller/user-check-out')
 const wallet = require('../user-controller/user-home')
 const user_wish_list_helper = require('../../helpers/user-helpers/user-wish-list-helper')
 

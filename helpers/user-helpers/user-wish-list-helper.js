@@ -1,7 +1,7 @@
 const connection = require('../../config/connection')
 const collection = require('../../config/collection')
 const { ObjectID } = require('bson');
-const { productID } = require('../../controller/USER-CONTROLLER/user-check-out');
+const { productID } = require('../../controller/user-controller/user-check-out');
 const { resolve, reject } = require('promise');
 
 module.exports = {
